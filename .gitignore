@@ -2,6 +2,7 @@ first_task.py
 tests.py
 _trial_temp
 ozon_scraper/saved_pages
+ozon_scraper/results.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
