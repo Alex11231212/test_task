@@ -26,9 +26,9 @@ class Saver:
             try:
                 driver.get(self.url)
                 driver.get_cookies()
-                time.sleep(3)
+                time.sleep(4)
                 driver.execute_script('window.scrollTo(15,4666);')
-                time.sleep(5)
+                time.sleep(2)
                 html = driver.page_source
                 with open(f'saved_pages/{self.filename}', 'w', encoding='utf-8') as file:
                     file.write(html)
@@ -59,4 +59,4 @@ def each_smartphone_pages_saver() -> None:
             url = f'https://www.ozon.ru{value}'
             filename = f'saved_phones/{index}.html'
             Saver(url=url, filename=filename).save_page()
-            time.sleep(random.randrange(4, 10))
+            time.sleep(random.randint(1, 4))
