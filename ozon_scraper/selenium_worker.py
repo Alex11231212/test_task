@@ -1,3 +1,4 @@
+import os
 import random
 import time
 
@@ -30,7 +31,7 @@ class Saver:
                 driver.execute_script('window.scrollTo(15,4666);')
                 time.sleep(2)
                 html = driver.page_source
-                with open(f'saved_pages/{self.filename}', 'w', encoding='utf-8') as file:
+                with open(f'{self.filename}', 'w', encoding='utf-8') as file:
                     file.write(html)
                 print(f'page {self.filename} saved successfully!')
             except Exception as e:
@@ -39,11 +40,11 @@ class Saver:
 
 def all_smartphones_pages_saver() -> None:
     url = 'https://www.ozon.ru/category/smartfony-15502/'
-
+    os.makedirs('saved_pages/saved_phones/', exist_ok=True)
     # для сбора информации о первых 100 смартфонах спарсим 3 страницы, т.к. на одной стр 36 моделей
     num_pages = 3
     for i in range(1, num_pages + 1):
-        filename = f'page_{i}.html'
+        filename = f'saved_pages/page_{i}.html'
         if i == 1:
             first_url = f'{url}?sorting=rating'
             Saver(first_url, filename).save_page()
@@ -57,6 +58,6 @@ def each_smartphone_pages_saver() -> None:
         sm_list = file.read().split('\n')[1:-1]
         for index, value in enumerate(sm_list):
             url = f'https://www.ozon.ru{value}'
-            filename = f'saved_phones/{index}.html'
-            Saver(url=url, filename=filename).save_page()
+            filename = f'saved_pages/saved_phones/{index}.html'
+            Saver(url, filename).save_page()
             time.sleep(random.randint(1, 4))
