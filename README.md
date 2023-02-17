@@ -1,4 +1,4 @@
-Hi! This is my solution for data scraping high rate smartphones from ozon.ru.
+Hi! This is my solution for data scraping high rate smartphones from a marketplace.
 
 How you should use it:
 1) install python3.10
